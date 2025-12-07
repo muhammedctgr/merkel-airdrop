@@ -25,7 +25,7 @@ contract MerkelAirdrop {
     }
 
     function claim(address account, uint256 amount, bytes32[] calldata merkleProof) external {
-        if(s_hasClaimed[account]) {
+        if (s_hasClaimed[account]) {
             revert MerkelAirdrop__AlreadyClaimed();
         }
         // calculate using the account, and the amount, the hash node -> leaf node
