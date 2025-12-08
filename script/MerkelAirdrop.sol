@@ -39,7 +39,7 @@ contract MerkelAirdrop is EIP712 {
             revert MerkelAirdrop__AlreadyClaimed();
         }
         // check the signature
-        if (!_isValidSignature(account, getMessage(account, amount), v, r, s)) {
+        if (!_isValidSignature(account, getMessageHash(account, amount), v, r, s)) {
             revert MerkelAirdrop__InvalidSignature();
         }
         // calculate using the account, and the amount, the hash node -> leaf node
@@ -52,7 +52,7 @@ contract MerkelAirdrop is EIP712 {
         i_airdropToken.safeTransfer(account, amount);
     }
 
-    function getMessage(address account, uint256 amount) public view returns (bytes32) {
+    function getMessageHash(address account, uint256 amount) public view returns (bytes32) {
         return _hashTypedDataV4(
             keccak256(abi.encode(MESSAGE_TYPEHASH, AirdropClaim({account: account, amount: amount})))
         );
