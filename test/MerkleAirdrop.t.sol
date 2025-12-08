@@ -60,4 +60,3 @@ contract MerkleAirdropTest is ZkSyncChainChecker, Test {
     //     assertEq(endingBalance - startingBalance, AMOUNT_TO_CLAIM);
     // }
 }
- 
